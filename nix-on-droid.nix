@@ -12,6 +12,7 @@
     gh
     mosh
     python3
+    openssh
     yazi
 
     # Some common stuff that people expect to have
