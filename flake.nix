@@ -21,7 +21,12 @@
   };
   outputs = { self, nixpkgs, nixpkgs-stable, nix-on-droid, home-manager, nixvim, ... }: {
     nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
-      pkgs = import nixpkgs { system = "aarch64-linux"; };
+      pkgs = import nixpkgs {
+        system = "aarch64-linux";
+        # Uncomment to allow unfree packages in nix-on-droid's package set.
+        # Home Manager's nixpkgs.config in home.nix applies separately.
+        # config.allowUnfree = true;
+      };
       extraSpecialArgs = { inherit nixvim; pkgsStable = import nixpkgs-stable { system = "aarch64-linux"; }; };
       modules = [ ./nix-on-droid.nix ];
     };

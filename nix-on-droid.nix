@@ -43,6 +43,7 @@
 
   environment.etcBackupExtension = ".bak";
   system.stateVersion = "24.05";
+  user.shell = lib.getExe pkgs.fish;
 
   nix.extraOptions = ''
     experimental-features = nix-command flakes

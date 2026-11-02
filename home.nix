@@ -1,4 +1,4 @@
-{ pkgs, pkgsStable, nixvim, ... }:
+{ pkgs, pkgsStable, nixvim, lib, ... }:
 {
   imports = [ nixvim.homeModules.nixvim ];
 
@@ -79,8 +79,14 @@
     home-manager.enable = true;
   };
 
-  home.file.".termux/font.ttf".source =
-    "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono/JetBrainsMonoNerdFont-Regular.ttf";
+  # Termux's Android font loader may not follow Home Manager's store symlink.
+  # Install a real file so Nerd Font glyphs (including Yazi icons) render.
+  home.activation.installTermuxFont = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD rm -f "$HOME/.termux/font.ttf"
+    $DRY_RUN_CMD ${pkgs.coreutils}/bin/install -Dm644 \
+      ${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono/JetBrainsMonoNerdFont-Regular.ttf \
+      "$HOME/.termux/font.ttf"
+  '';
 
   home.packages = with pkgs; [
     axel
