@@ -12,6 +12,12 @@
     VISUAL = "hx";
   };
 
+  home.shellAliases = {
+    nod = "cd ~/.config/nix-on-droid/";
+    nody = "cd ~/.config/nix-on-droid/ && yazi";
+    nod-switch = "nix-on-droid switch -F ~/.config/nix-on-droid/";
+  };
+
   programs = {
     atuin = {
       enable = true;
