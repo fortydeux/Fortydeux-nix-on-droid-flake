@@ -11,6 +11,7 @@
     python3
     openssh
     opencode
+    which
 
     # Some common stuff that people expect to have
     #procps

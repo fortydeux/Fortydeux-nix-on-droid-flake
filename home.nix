@@ -96,6 +96,7 @@
     fd
     nerd-fonts.jetbrains-mono
     nix-search
+    rclone
     ripgrep
     tealdeer
     topgrade
