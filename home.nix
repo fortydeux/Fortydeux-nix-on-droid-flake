@@ -97,9 +97,13 @@
   home.packages = with pkgs; [
     axel
     btop
+    dirstat-rs
     duf
+    dust
     fastfetch
     fd
+    gdu
+    ncdu
     nerd-fonts.jetbrains-mono
     nix-search
     rclone
