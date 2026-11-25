@@ -46,6 +46,9 @@
   system.stateVersion = "24.05";
   user.shell = lib.getExe pkgs.fish;
 
+  # Nix 2.35.6 cannot read Pixel device's legacy profile manifest during activation.
+  # Using the locked stable version until the compatibility issue is resolved.
+  nix.package = pkgsStable.nix;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
